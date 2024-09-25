@@ -6,7 +6,7 @@ package appCliente;
 
 /**
  *
- * @author Dell
+ * @author Equipo4
  */
 public class AppCliente {
     

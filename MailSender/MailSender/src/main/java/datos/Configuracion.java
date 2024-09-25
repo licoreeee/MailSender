@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Dell
+ * @author Equipo4
  */
 public class Configuracion {
     
