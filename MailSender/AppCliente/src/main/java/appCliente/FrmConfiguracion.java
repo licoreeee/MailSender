@@ -40,7 +40,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         btnEnviar.setEnabled(false);
         configuracionDisponible = null;
         configuracionDisponible = mailSender.consultarConfiguracion();
-        llenarCombobox();
+        llenarComboBoxServicios();
     }
 
     /**
@@ -195,12 +195,11 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblInstruccion)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblServicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblProtocolo)
-                        .addComponent(cmbxProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProtocolo)
+                    .addComponent(cmbxProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuenta)
@@ -235,18 +234,15 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        configuracionCreada = null;
-        Protocolo protocoloSeleccionado = new Protocolo(cmbxProtocolo.getSelectedItem().toString());
-        List<Protocolo> listaProtocolos = new LinkedList<>();
-        listaProtocolos.add(protocoloSeleccionado);
-        Cuenta cuentaSeleccionada = new Cuenta(cmbxCuenta.getSelectedItem().toString());
-        List<Cuenta> listaCuentas = new LinkedList<>();
-        listaCuentas.add(cuentaSeleccionada);
-        Servicio servicioSeleccionado = new Servicio(cmbxServicio.getSelectedItem().toString());
-        servicioSeleccionado.setProtocolos(listaProtocolos);
-        servicioSeleccionado.setCuentas(listaCuentas);
-        List<Servicio> listaServicios = new LinkedList<>();
-        configuracionCreada.setServicios(listaServicios);
+        configuracionCreada = new Configuracion();
+        Cuenta cuenta = (Cuenta) cmbxCuenta.getSelectedItem();
+        Protocolo protocolo = (Protocolo) cmbxProtocolo.getSelectedItem();
+        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
+        Servicio servicioNuevo = new Servicio(servicio.getNombre());
+        servicioNuevo.agregarCuenta(cuenta);
+        servicioNuevo.agregarProtocolo(protocolo);
+
+        configuracionCreada.agregarServicio(servicioNuevo);
 
         txtfldDestinatario.setEditable(true);
         txtfldConcepto.setEditable(true);
@@ -265,7 +261,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void cmbxServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxServicioActionPerformed
-        actualizarComboBox();
+        llenarOtrosComboBox();
     }//GEN-LAST:event_cmbxServicioActionPerformed
 
     /**
@@ -303,28 +299,22 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         });
     }
 
-    private void llenarCombobox() {
+    private void llenarComboBoxServicios() {
         List<Servicio> servicios = new LinkedList<>();
         servicios = configuracionDisponible.getServicios();
 
         listaServicios = serviciosComboBoxModel(servicios);
         cmbxServicio.setModel(listaServicios);
-        
-        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
 
-        listaProtocolos = protocolosComboBoxModel(servicio.getProtocolos());
-        cmbxProtocolo.setModel(listaProtocolos);
-        
-        listaCuentas = cuentasComboBoxModel(servicio.getCuentas());
-        cmbxCuenta.setModel(listaCuentas);
+        llenarOtrosComboBox();
     }
-    
-    private void actualizarComboBox() {
+
+    private void llenarOtrosComboBox() {
         Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
 
         listaProtocolos = protocolosComboBoxModel(servicio.getProtocolos());
         cmbxProtocolo.setModel(listaProtocolos);
-        
+
         listaCuentas = cuentasComboBoxModel(servicio.getCuentas());
         cmbxCuenta.setModel(listaCuentas);
     }
@@ -341,7 +331,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     /**
      * Genera un objeto de tipo DefaultComboBoxModel a partir de una lista de
      * protocolos.
@@ -361,7 +351,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     /**
      * Genera un objeto de tipo DefaultComboBoxModel a partir de una lista de
      * cuentas.

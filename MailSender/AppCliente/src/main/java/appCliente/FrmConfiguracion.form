@@ -115,13 +115,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblInstruccion" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblServicio" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblProtocolo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbxProtocolo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblProtocolo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbxProtocolo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblServicio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
