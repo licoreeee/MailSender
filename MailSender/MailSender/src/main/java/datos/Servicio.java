@@ -139,4 +139,8 @@ public class Servicio {
         return Objects.equals(this.nombre, other.nombre);
     }
 
+    @Override
+    public String toString() {
+        return getNombre();
+    }
 }

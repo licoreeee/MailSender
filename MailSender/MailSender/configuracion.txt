@@ -14,7 +14,7 @@ Hotmail:
     -IMAP
     -POP3 
      cuenta:
-    -borreGOD@outlook.com
+    -borreGOD@hotmail.com
     -abel@hotmail.com
     -vicky@hotmail.com
     -diego@hotmail.com 

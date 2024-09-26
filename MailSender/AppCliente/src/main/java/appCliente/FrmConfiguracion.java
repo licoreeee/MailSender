@@ -24,8 +24,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     private IMailSender mailSender;
     private Configuracion configuracionCreada;
     private Configuracion configuracionDisponible;
-    private DefaultComboBoxModel servicios;
-    
+    private DefaultComboBoxModel listaServicios = new DefaultComboBoxModel();
+    private DefaultComboBoxModel listaProtocolos = new DefaultComboBoxModel();
+    private DefaultComboBoxModel listaCuentas = new DefaultComboBoxModel();
+
     /**
      * Creates new form FrmConfiguracion
      */
@@ -76,7 +78,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmbxServicio.setModel(servicios);
+        cmbxServicio.setModel(listaServicios);
         cmbxServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbxServicioActionPerformed(evt);
@@ -92,6 +94,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         lblProtocolo.setText("Protocolo:");
 
         lblCuenta.setText("Cuenta:");
+
+        cmbxProtocolo.setModel(listaProtocolos);
+
+        cmbxCuenta.setModel(listaCuentas);
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +247,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         servicioSeleccionado.setCuentas(listaCuentas);
         List<Servicio> listaServicios = new LinkedList<>();
         configuracionCreada.setServicios(listaServicios);
-        
+
         txtfldDestinatario.setEditable(true);
         txtfldConcepto.setEditable(true);
         txtfldCuerpo.setEditable(true);
@@ -252,14 +258,14 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         String destinatario = txtfldDestinatario.getText();
         String concepto = txtfldConcepto.getText();
         String cuerpo = txtfldCuerpo.getText();
-        
+
         Correo correoNuevo = new Correo(destinatario, concepto, cuerpo);
-        
+
         mailSender.enviarCorreo(correoNuevo, configuracionCreada);
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void cmbxServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxServicioActionPerformed
-        llenarCombobox();
+        actualizarComboBox();
     }//GEN-LAST:event_cmbxServicioActionPerformed
 
     /**
@@ -296,24 +302,84 @@ public class FrmConfiguracion extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void llenarCombobox() {
         List<Servicio> servicios = new LinkedList<>();
         servicios = configuracionDisponible.getServicios();
 
-        for (Servicio servicio : servicios) {
-            cmbxServicio.addItem(servicio);
-        }
-
-        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
+        listaServicios = serviciosComboBoxModel(servicios);
+        cmbxServicio.setModel(listaServicios);
         
-        for (Protocolo protocolo : servicio.getProtocolos()) {
-            cmbxProtocolo.addItem(protocolo.getNombre());
-        }
+        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
 
-        for (Cuenta cuenta : servicio.getCuentas()) {
-            cmbxCuenta.addItem(cuenta.getDireccion());
+        listaProtocolos = protocolosComboBoxModel(servicio.getProtocolos());
+        cmbxProtocolo.setModel(listaProtocolos);
+        
+        listaCuentas = cuentasComboBoxModel(servicio.getCuentas());
+        cmbxCuenta.setModel(listaCuentas);
+    }
+    
+    private void actualizarComboBox() {
+        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
+
+        listaProtocolos = protocolosComboBoxModel(servicio.getProtocolos());
+        cmbxProtocolo.setModel(listaProtocolos);
+        
+        listaCuentas = cuentasComboBoxModel(servicio.getCuentas());
+        cmbxCuenta.setModel(listaCuentas);
+    }
+
+    public DefaultComboBoxModel<Servicio> serviciosComboBoxModel(List<Servicio> listaServicios) {
+        DefaultComboBoxModel<Servicio> defaultComboBoxModel = new DefaultComboBoxModel<>();
+        if (listaServicios != null) {
+            // Para cada elemento de la Lista
+            for (int i = 0; i < listaServicios.size(); i++) {
+                // Agregalo a la instancia de la clase DefaultComboBoxModel
+                defaultComboBoxModel.addElement(listaServicios.get(i));
+            }
+            return defaultComboBoxModel;
         }
+        return null;
+    }
+    
+    /**
+     * Genera un objeto de tipo DefaultComboBoxModel a partir de una lista de
+     * protocolos.
+     *
+     * @param listaProtocolos Lista de cuentas
+     * @return Regresa el defaultComboBoxModel con los protocolos.
+     */
+    public DefaultComboBoxModel<Protocolo> protocolosComboBoxModel(List<Protocolo> listaProtocolos) {
+        DefaultComboBoxModel<Protocolo> defaultComboBoxModel = new DefaultComboBoxModel<>();
+        if (listaProtocolos != null) {
+            // Para cada elemento de la Lista
+            for (int i = 0; i < listaProtocolos.size(); i++) {
+                // Agregalo a la instancia de la clase DefaultComboBoxModel
+                defaultComboBoxModel.addElement(listaProtocolos.get(i));
+            }
+            return defaultComboBoxModel;
+        }
+        return null;
+    }
+    
+    /**
+     * Genera un objeto de tipo DefaultComboBoxModel a partir de una lista de
+     * cuentas.
+     *
+     * @param listaCuentas Lista de cuentas
+     * @return Regresa el defaultComboBoxModel con las cuentas.
+     */
+    public DefaultComboBoxModel<Cuenta> cuentasComboBoxModel(List<Cuenta> listaCuentas) {
+        DefaultComboBoxModel<Cuenta> defaultComboBoxModel = new DefaultComboBoxModel<>();
+        if (listaCuentas != null) {
+            // Para cada elemento de la Lista
+            for (int i = 0; i < listaCuentas.size(); i++) {
+                // Agregalo a la instancia de la clase DefaultComboBoxModel
+                defaultComboBoxModel.addElement(listaCuentas.get(i));
+            }
+            return defaultComboBoxModel;
+        }
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

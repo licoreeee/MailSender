@@ -63,4 +63,8 @@ public class Protocolo {
         return Objects.equals(this.nombre, other.nombre);
     }
 
+    @Override
+    public String toString() {
+        return getNombre();
+    }
 }

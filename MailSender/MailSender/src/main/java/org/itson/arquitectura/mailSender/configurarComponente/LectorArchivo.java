@@ -29,7 +29,7 @@ public class LectorArchivo implements ILector {
     public Map<String, Map<String, List<String>>> leerConfiguracion() {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader("C:\\Users\\Dell\\OneDrive\\Documentos\\GitHub\\MailSender\\MailSender\\MailSender\\configuracion.txt"));
+            reader = new BufferedReader(new FileReader("C:\\Users\\Familia\\Documents\\GitHub\\MailSender\\MailSender\\MailSender\\configuracion.txt"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LectorArchivo.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -63,4 +63,9 @@ public class Cuenta {
         return Objects.equals(this.direccion, other.direccion);
     }
 
+    @Override
+    public String toString() {
+        return getDireccion();
+    }
+    
 }
