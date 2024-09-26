@@ -1,0 +1,17 @@
+# Configuración de servicios y protocolos
+Gmail:
+     protocolo:
+    -IMAP
+    -POP3 
+     cuenta:
+    -abel@gmail.com
+    -vicky@gmail.com
+    -diego@gmail.com    
+Hotmail:
+    protocolo:
+    -IMAP
+    -POP3 
+     cuenta:
+    -abel@hotmail.com
+    -vicky@hotmail.com
+    -diego@hotmail.com 
