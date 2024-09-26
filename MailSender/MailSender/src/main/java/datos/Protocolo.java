@@ -10,27 +10,44 @@ import java.util.Objects;
  */
 public class Protocolo {
 
-    private String protocolo;
+    private String nombre;
 
-    public Protocolo(String protocolo) {
-        this.protocolo = protocolo;
+    /**
+     * Constructor que recibe el nombre del protocolo.
+     *
+     * @param nombre El nombre del protocolo
+     */
+    public Protocolo(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getProtocolo() {
-        return protocolo;
+    /**
+     * Permite obtener el nombre del protocolo.
+     *
+     * @return El nombre del protocolo
+     */
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
-    }
-
+    /**
+     * Permite asignarle y obtener un hashcode al protocolo.
+     *
+     * @return EL hashcode del protocolo
+     */
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.protocolo);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
 
+    /**
+     * Permite sabe si el protocolo es igual a otro protocolo.
+     *
+     * @param obj El otro protocolo
+     * @return true si los protocolos son iguales, false en caso contrario
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -43,7 +60,7 @@ public class Protocolo {
             return false;
         }
         final Protocolo other = (Protocolo) obj;
-        return Objects.equals(this.protocolo, other.protocolo);
+        return Objects.equals(this.nombre, other.nombre);
     }
 
 }

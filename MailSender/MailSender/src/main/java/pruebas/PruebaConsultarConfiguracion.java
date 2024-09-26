@@ -30,7 +30,7 @@ public class PruebaConsultarConfiguracion {
         for (Servicio servicio : serviciosConfig) {
             System.out.println("Servicio: "+servicio.getNombre());
             for (Protocolo protocolo : servicio.getProtocolos()) {
-                System.out.println("     Protocolo:"+protocolo.getProtocolo());
+                System.out.println("     Protocolo:"+protocolo.getNombre());
             }
             for (Cuenta cuenta : servicio.getCuentas()) {
                 System.out.println("     Cuentas:"+cuenta.getDireccion());

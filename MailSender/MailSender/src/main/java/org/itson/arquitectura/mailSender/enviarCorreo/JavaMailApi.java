@@ -90,7 +90,7 @@ public class JavaMailApi implements IMecanismo {
                           Servicio: %s
                           Protocolo: %s
                           Cuenta: %s
-                          """, servicio.getNombre(), protocolo.getProtocolo(), cuenta.getDireccion());
+                          """, servicio.getNombre(), protocolo.getNombre(), cuenta.getDireccion());
         try {
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailDesde, passwordFrom);

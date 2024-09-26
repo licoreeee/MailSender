@@ -38,12 +38,7 @@ public class PruebaEnviarCorreos {
         servicios.getFirst().setCuentas(cuentas);
         configuracion.setServicios(servicios);
         
-        
-
-        Correo correo = new Correo();
-        correo.setDestinatario("abel.sanchez245473@potros.itson.edu.mx");
-        correo.setEncabezado("Puro hola mundo");
-        correo.setMensaje("Hola mundo lo mejor");
+        Correo correo = new Correo("abel.sanchez245473@potros.itson.edu.mx", "Puro hola mundo", "Hola mundo lo mejor");
         mecanismo.enviar(correo, configuracion);
     }
     

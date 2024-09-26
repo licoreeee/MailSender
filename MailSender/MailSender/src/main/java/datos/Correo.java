@@ -12,33 +12,52 @@ public class Correo {
     private String mensaje;
     private String destinatario;
 
-    public Correo() {
+    /**
+     * Constructor que recibe el destinatario, el encabezado y el mensaje del
+     * correo.
+     *
+     * @param destinatario El destinatario del correo
+     * @param encabezado El encabezado del correo
+     * @param mensaje El mensaje del correo
+     */
+    public Correo(String destinatario, String encabezado, String mensaje) {
+        this.destinatario = destinatario;
+        this.encabezado = encabezado;
+        this.mensaje = mensaje;
     }
 
+    /**
+     * Permite obtener el encabezado del correo.
+     *
+     * @return El encabezado del correo
+     */
     public String getEncabezado() {
         return encabezado;
     }
 
-    public void setEncabezado(String encabezado) {
-        this.encabezado = encabezado;
-    }
-
+    /**
+     * Permite obtener el mensaje del correo.
+     *
+     * @return El mensaje del correo
+     */
     public String getMensaje() {
         return mensaje;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
+    /**
+     * Permite obtener el destinatario del correo.
+     *
+     * @return El destinatario del correo
+     */
     public String getDestinatario() {
         return destinatario;
     }
 
-    public void setDestinatario(String destinatario) {
-        this.destinatario = destinatario;
-    }
-
+    /**
+     * Permite saber si un correo es correcto o no.
+     *
+     * @return true si el correo es correcto, false en caso contrario
+     */
     public boolean validar() {
         if (encabezado.isBlank()) {
             return false;
