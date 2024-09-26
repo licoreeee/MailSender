@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * LectorArchivo.java
  */
 package org.itson.arquitectura.mailSender.configurarComponente;
 
@@ -19,10 +18,11 @@ import java.util.logging.Logger;
  * @author Equipo 4
  */
 public class LectorArchivo implements ILector {
-    
+
     /**
-     * Lee una configuración guardada en un archivo de tetxto, para ello se guardan los elementos
-     * tanto en mapas como lista
+     * Lee una configuración guardada en un archivo de tetxto, para ello se
+     * guardan los elementos tanto en mapas como lista
+     *
      * @return mapa con los valores completos de configuración
      */
     @Override
@@ -36,7 +36,7 @@ public class LectorArchivo implements ILector {
 
         String linea;
         String servicioActual = null;
-        String tipoActual = null; 
+        String tipoActual = null;
         Map<String, Map<String, List<String>>> servicios = new HashMap<>();
 
         try {
@@ -49,15 +49,12 @@ public class LectorArchivo implements ILector {
                     servicios.put(servicioActual, new HashMap<>());
                     servicios.get(servicioActual).put("protocolo", new ArrayList<>());
                     servicios.get(servicioActual).put("cuenta", new ArrayList<>());
-                }
-                // Detecta la sección de protocolos o cuentas
+                } // Detecta la sección de protocolos o cuentas
                 else if (linea.contains("protocolo:")) {
-                    tipoActual = "protocolo"; 
-                }
-                else if (linea.contains("cuenta:")) {
-                    tipoActual = "cuenta"; 
-                }
-                // Detecta y agrega los protocolos o las cuentas
+                    tipoActual = "protocolo";
+                } else if (linea.contains("cuenta:")) {
+                    tipoActual = "cuenta";
+                } // Detecta y agrega los protocolos o las cuentas
                 else if (linea.startsWith("-") && servicioActual != null && tipoActual != null) {
                     String valor = linea.substring(1).trim();
                     servicios.get(servicioActual).get(tipoActual).add(valor);
