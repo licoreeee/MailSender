@@ -13,11 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author Abe
+ * @author Equipo 4
  */
 public class LectorConfiguracion implements ILectorConfiguracion {
 
+    /**
+     * obtiene una los valores de una configuración guardada en un mapa y lo tranforma en un 
+     * objeto de timpo configuración
+     * @return valor de la configuración con sus valores
+     */
     @Override
     public Configuracion obtenerConfiguracion() {
 

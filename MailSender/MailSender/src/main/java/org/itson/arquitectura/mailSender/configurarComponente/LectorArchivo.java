@@ -16,12 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Abe
+ * @author Equipo 4
  */
 public class LectorArchivo implements ILector {
     
-    
+    /**
+     * Lee una configuración guardada en un archivo de tetxto, para ello se guardan los elementos
+     * tanto en mapas como lista
+     * @return mapa con los valores completos de configuración
+     */
     @Override
     public Map<String, Map<String, List<String>>> leerConfiguracion() {
         BufferedReader reader = null;
