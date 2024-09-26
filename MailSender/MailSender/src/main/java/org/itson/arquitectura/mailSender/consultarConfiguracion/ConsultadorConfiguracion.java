@@ -4,7 +4,6 @@
 package org.itson.arquitectura.mailSender.consultarConfiguracion;
 
 import datos.Configuracion;
-import org.itson.arquitectura.mailSender.configurarComponente.ILectorConfiguracion;
 import org.itson.arquitectura.mailSender.configurarComponente.LectorConfiguracion;
 
 /**
@@ -14,7 +13,7 @@ import org.itson.arquitectura.mailSender.configurarComponente.LectorConfiguracio
  */
 public class ConsultadorConfiguracion {
 
-    private ILectorConfiguracion lectorConfiguracion;
+    private LectorConfiguracion lectorConfiguracion;
 
     /**
      * Constructor que inicializa el atributo lectorConfiguración.

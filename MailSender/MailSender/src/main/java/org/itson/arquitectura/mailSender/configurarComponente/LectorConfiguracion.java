@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * @author Equipo 4
  */
-public class LectorConfiguracion implements ILectorConfiguracion {
+public class LectorConfiguracion{
 
     /**
      * obtiene una los valores de una configuración guardada en un mapa y lo
@@ -22,7 +22,6 @@ public class LectorConfiguracion implements ILectorConfiguracion {
      *
      * @return valor de la configuración con sus valores
      */
-    @Override
     public Configuracion obtenerConfiguracion() {
 
         ILector lector = new LectorArchivo();
