@@ -1,8 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * FrmEnviarCorreo.java
  */
-package appCliente;
+package pantallas;
 
 import datos.Configuracion;
 import datos.Correo;
@@ -16,10 +15,9 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
- * @author Dell
+ * @author Equipo4
  */
-public class FrmConfiguracion extends javax.swing.JFrame {
+public class FrmEnviarCorreo extends javax.swing.JFrame {
 
     private IMailSender mailSender;
     private Configuracion configuracionCreada;
@@ -31,14 +29,19 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     /**
      * Creates new form FrmConfiguracion
      */
-    public FrmConfiguracion() {
+    public FrmEnviarCorreo() {
         initComponents();
+        setTitle("Enviar Correo");
         mailSender = new MailSenderFacade();
         cmbxServicio.removeAllItems();
         cmbxProtocolo.removeAllItems();
         cmbxCuenta.removeAllItems();
+        
         btnEnviar.setEnabled(false);
-        configuracionDisponible = null;
+        txtfldDestinatario.setEnabled(false);
+        txtAreaCuerpo.setEnabled(false);
+        txtfldConcepto.setEnabled(false);
+        
         configuracionDisponible = mailSender.consultarConfiguracion();
         llenarComboBoxServicios();
     }
@@ -70,9 +73,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         lblDestinatario = new javax.swing.JLabel();
         txtfldDestinatario = new javax.swing.JTextField();
         lblCuerpo = new javax.swing.JLabel();
-        txtfldCuerpo = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         lblInstruccion2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaCuerpo = new javax.swing.JTextArea();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -110,16 +114,9 @@ public class FrmConfiguracion extends javax.swing.JFrame {
 
         lblConcepto.setText("Concepto:");
 
-        txtfldConcepto.setEditable(false);
-
         lblDestinatario.setText("Destinatario:");
 
-        txtfldDestinatario.setEditable(false);
-
         lblCuerpo.setText("Cuerpo:");
-
-        txtfldCuerpo.setEditable(false);
-        txtfldCuerpo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         btnEnviar.setText("Enviar");
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +126,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         });
 
         lblInstruccion2.setText("Primero, no olvide escoger una configuración.");
+
+        txtAreaCuerpo.setColumns(20);
+        txtAreaCuerpo.setRows(5);
+        jScrollPane2.setViewportView(txtAreaCuerpo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,11 +178,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                                 .addComponent(lblConcepto)
                                 .addComponent(lblCuerpo))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtfldCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtfldConcepto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                                    .addComponent(txtfldDestinatario, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtfldConcepto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                                .addComponent(txtfldDestinatario, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(lblInstruccion2)))
@@ -220,11 +220,11 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfldConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblConcepto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtfldCuerpo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCuerpo))
-                .addGap(18, 18, 18)
+                    .addComponent(lblCuerpo)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(btnEnviar)
                 .addGap(16, 16, 16))
         );
@@ -235,6 +235,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         configuracionCreada = new Configuracion();
+        
         Cuenta cuenta = (Cuenta) cmbxCuenta.getSelectedItem();
         Protocolo protocolo = (Protocolo) cmbxProtocolo.getSelectedItem();
         Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
@@ -244,16 +245,16 @@ public class FrmConfiguracion extends javax.swing.JFrame {
 
         configuracionCreada.agregarServicio(servicioNuevo);
 
-        txtfldDestinatario.setEditable(true);
-        txtfldConcepto.setEditable(true);
-        txtfldCuerpo.setEditable(true);
+        txtfldDestinatario.setEnabled(true);
+        txtfldConcepto.setEnabled(true);
+        txtAreaCuerpo.setEnabled(true);
         btnEnviar.setEnabled(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String destinatario = txtfldDestinatario.getText();
         String concepto = txtfldConcepto.getText();
-        String cuerpo = txtfldCuerpo.getText();
+        String cuerpo = txtAreaCuerpo.getText();
 
         Correo correoNuevo = new Correo(destinatario, concepto, cuerpo);
 
@@ -281,20 +282,23 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnviarCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnviarCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnviarCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmConfiguracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmEnviarCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmConfiguracion().setVisible(true);
+                new FrmEnviarCorreo().setVisible(true);
             }
         });
     }
@@ -379,6 +383,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbxProtocolo;
     private javax.swing.JComboBox<String> cmbxServicio;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lblConcepto;
@@ -391,8 +396,8 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JTextArea txtAreaCuerpo;
     private javax.swing.JTextField txtfldConcepto;
-    private javax.swing.JTextField txtfldCuerpo;
     private javax.swing.JTextField txtfldDestinatario;
     // End of variables declaration//GEN-END:variables
 }

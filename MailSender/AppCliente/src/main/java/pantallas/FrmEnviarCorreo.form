@@ -89,12 +89,10 @@
                               <Component id="lblCuerpo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtfldCuerpo" min="-2" pref="289" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtfldConcepto" alignment="1" pref="290" max="32767" attributes="0"/>
-                                  <Component id="txtfldDestinatario" alignment="1" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtfldConcepto" alignment="1" pref="290" max="32767" attributes="0"/>
+                              <Component id="txtfldDestinatario" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -144,12 +142,12 @@
                   <Component id="txtfldConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtfldCuerpo" min="-2" pref="112" max="-2" attributes="0"/>
                   <Component id="lblCuerpo" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="112" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="btnEnviar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -237,9 +235,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfldConcepto">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDestinatario">
       <Properties>
@@ -247,19 +242,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfldDestinatario">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCuerpo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cuerpo:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtfldCuerpo">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="horizontalAlignment" type="int" value="2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnEnviar">
@@ -275,5 +261,20 @@
         <Property name="text" type="java.lang.String" value="Primero, no olvide escoger una configuraci&#xf3;n."/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txtAreaCuerpo">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
