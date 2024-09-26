@@ -13,7 +13,6 @@ import facade.IMailSender;
 import facade.MailSenderFacade;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -24,7 +23,6 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     private IMailSender mailSender;
     private Configuracion configuracionCreada;
     private Configuracion configuracionDisponible;
-    private DefaultComboBoxModel servicios;
     
     /**
      * Creates new form FrmConfiguracion
@@ -76,7 +74,6 @@ public class FrmConfiguracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmbxServicio.setModel(servicios);
         cmbxServicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbxServicioActionPerformed(evt);
@@ -189,12 +186,11 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblInstruccion)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblServicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblProtocolo)
-                        .addComponent(cmbxProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProtocolo)
+                    .addComponent(cmbxProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuenta)
@@ -259,7 +255,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void cmbxServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxServicioActionPerformed
-        llenarCombobox();
+        
     }//GEN-LAST:event_cmbxServicioActionPerformed
 
     /**
@@ -302,17 +298,15 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         servicios = configuracionDisponible.getServicios();
 
         for (Servicio servicio : servicios) {
-            cmbxServicio.addItem(servicio);
-        }
+            cmbxServicio.addItem(servicio.getNombre());
 
-        Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
-        
-        for (Protocolo protocolo : servicio.getProtocolos()) {
-            cmbxProtocolo.addItem(protocolo.getNombre());
-        }
+            for (Protocolo protocolo : servicio.getProtocolos()) {
+                cmbxProtocolo.addItem(protocolo.getNombre());
+            }
 
-        for (Cuenta cuenta : servicio.getCuentas()) {
-            cmbxCuenta.addItem(cuenta.getDireccion());
+            for (Cuenta cuenta : servicio.getCuentas()) {
+                cmbxCuenta.addItem(cuenta.getDireccion());
+            }
         }
     }
 
