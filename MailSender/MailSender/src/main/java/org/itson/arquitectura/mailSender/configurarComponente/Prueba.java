@@ -4,6 +4,10 @@
  */
 package org.itson.arquitectura.mailSender.configurarComponente;
 
+import datos.Configuracion;
+import datos.Cuenta;
+import datos.Protocolo;
+import datos.Servicio;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +39,20 @@ public class Prueba {
             System.out.println("     cuenta:");
             for (String cuenta : datos.get("cuenta")) {
                 System.out.println("          -" + cuenta);
+            }
+        }
+        
+        System.out.println("**********************************************************");
+        ILectorConfiguracion lectorConfig = new LectorConfiguracion();
+        Configuracion configuracion = lectorConfig.obtenerConfiguracion();
+        List<Servicio> serviciosConfig = configuracion.getServicios();        
+        for (Servicio servicio : serviciosConfig) {
+            System.out.println("Servicio: "+servicio.getNombre());
+            for (Protocolo protocolo : servicio.getProtocolos()) {
+                System.out.println("     Protocolo:"+protocolo.getProtocolo());
+            }
+            for (Cuenta cuenta : servicio.getCuentas()) {
+                System.out.println("     Cuentas:"+cuenta.getDireccion());
             }
         }
     }

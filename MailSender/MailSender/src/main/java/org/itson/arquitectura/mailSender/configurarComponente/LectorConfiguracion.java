@@ -5,7 +5,11 @@
 package org.itson.arquitectura.mailSender.configurarComponente;
 
 import datos.Configuracion;
+import datos.Cuenta;
+import datos.Protocolo;
+import datos.Servicio;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,28 +17,39 @@ import java.util.Map;
  *
  * @author Abe
  */
-public class LectorConfiguracion implements ILectorConfiguracion{
+public class LectorConfiguracion implements ILectorConfiguracion {
 
     @Override
     public Configuracion obtenerConfiguracion() {
 
-       ILector lector = new LectorArchivo(); 
-       
+        ILector lector = new LectorArchivo();
+
         Map<String, Map<String, List<String>>> servicios = lector.leerConfiguracion();
-        
-        for (String servicio : servicios.keySet()) {
-            Map<String, List<String>> datos = servicios.get(servicio);
-            
-            for (String protocolo : datos.get("protocolo")) {
-                System.out.println("          -" + protocolo);
+        List<Servicio> listaServicios = new LinkedList<>();
+        for (String servicioArchivo : servicios.keySet()) {
+
+            List<Protocolo> listaProtocolos = new LinkedList<>();
+            List<Cuenta> listaCuentas = new LinkedList<>();
+            Map<String, List<String>> datos = servicios.get(servicioArchivo);
+            Servicio servicio = new Servicio(servicioArchivo);
+            for (String protocoloArchivo : datos.get("protocolo")) {
+                Protocolo protocolo = new Protocolo(protocoloArchivo);
+                listaProtocolos.add(protocolo);
             }
 
-            System.out.println("     cuenta:");
-            for (String cuenta : datos.get("cuenta")) {
-                System.out.println("          -" + cuenta);
+            for (String cuentaArchivo : datos.get("cuenta")) {
+                Cuenta cuenta = new Cuenta(cuentaArchivo);
+                listaCuentas.add(cuenta);
             }
+            servicio.setCuentas(listaCuentas);
+            servicio.setProtocolos(listaProtocolos);
+            listaServicios.add(servicio);
         }
-        return new Configuracion();
+        Configuracion configuracion = new Configuracion();
+        configuracion.setServicios(listaServicios);
+        
+        return configuracion;
+        
     }
-    
+
 }

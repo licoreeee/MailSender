@@ -33,7 +33,7 @@ public class LectorArchivo implements ILector {
 
         String linea;
         String servicioActual = null;
-        String tipoActual = null; // Protocolo o Cuenta
+        String tipoActual = null; 
         Map<String, Map<String, List<String>>> servicios = new HashMap<>();
 
         try {
@@ -49,10 +49,10 @@ public class LectorArchivo implements ILector {
                 }
                 // Detecta la sección de protocolos o cuentas
                 else if (linea.contains("protocolo:")) {
-                    tipoActual = "protocolo"; // Indica que lo que sigue son protocolos
+                    tipoActual = "protocolo"; 
                 }
                 else if (linea.contains("cuenta:")) {
-                    tipoActual = "cuenta"; // Indica que lo que sigue son cuentas
+                    tipoActual = "cuenta"; 
                 }
                 // Detecta y agrega los protocolos o las cuentas
                 else if (linea.startsWith("-") && servicioActual != null && tipoActual != null) {
