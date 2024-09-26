@@ -43,7 +43,7 @@ public class PruebaEnviarCorreos {
         Correo correo = new Correo();
         correo.setDestinatario("abel.sanchez245473@potros.itson.edu.mx");
         correo.setEncabezado("Puro hola mundo");
-        correo.setMensaje("Hola mundo la mejor planilla alvvvvvvv!!!!!");
+        correo.setMensaje("Hola mundo lo mejor);
         mecanismo.enviar(correo, configuracion);
     }
     
