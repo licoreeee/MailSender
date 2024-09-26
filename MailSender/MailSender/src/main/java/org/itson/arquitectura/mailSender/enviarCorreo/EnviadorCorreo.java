@@ -13,8 +13,8 @@ public class EnviadorCorreo {
 
     private IMecanismo mecanismo;
 
-    public EnviadorCorreo() {
-
+    public EnviadorCorreo(IMecanismo mecanismo) {
+        this.mecanismo = mecanismo;
     }
 
     public void enviar(Correo correo, Configuracion configuracion) {

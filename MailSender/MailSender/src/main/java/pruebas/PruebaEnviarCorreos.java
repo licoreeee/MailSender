@@ -10,7 +10,7 @@ import datos.Cuenta;
 import datos.Protocolo;
 import datos.Servicio;
 import org.itson.arquitectura.mailSender.enviarCorreo.IMecanismo;
-import implementaciones.JavaMailApi;
+import org.itson.arquitectura.mailSender.enviarCorreo.JavaMailApi;
 import java.util.LinkedList;
 import java.util.List;
 

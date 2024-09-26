@@ -12,5 +12,5 @@ import datos.Correo;
 public interface IMecanismo {
 
     public void enviar(Correo correo, Configuracion configuracion);
-    
+
 }
