@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * LectorConfiguracion.java
  */
 package org.itson.arquitectura.mailSender.configurarComponente;
 
@@ -18,8 +17,9 @@ import java.util.Map;
 public class LectorConfiguracion implements ILectorConfiguracion {
 
     /**
-     * obtiene una los valores de una configuración guardada en un mapa y lo tranforma en un 
-     * objeto de timpo configuración
+     * obtiene una los valores de una configuración guardada en un mapa y lo
+     * tranforma en un objeto de timpo configuración
+     *
      * @return valor de la configuración con sus valores
      */
     @Override
@@ -50,9 +50,9 @@ public class LectorConfiguracion implements ILectorConfiguracion {
         }
         Configuracion configuracion = new Configuracion();
         configuracion.setServicios(listaServicios);
-        
+
         return configuracion;
-        
+
     }
 
 }
