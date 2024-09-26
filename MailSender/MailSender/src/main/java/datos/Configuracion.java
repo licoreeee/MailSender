@@ -1,9 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Configuracion.java
  */
 package datos;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,14 +11,11 @@ import java.util.List;
  * @author Equipo4
  */
 public class Configuracion {
-    
+
     private List<Servicio> servicios;
 
     public Configuracion() {
-    }
-    
-    public boolean validar(){
-        return true;
+        servicios = new LinkedList<>();
     }
 
     public List<Servicio> getServicios() {
@@ -29,4 +26,18 @@ public class Configuracion {
         this.servicios = servicios;
     }
 
+    public boolean agregarServicio(Servicio servicio) {
+        if (!servicios.contains(servicio)) {
+            servicios.add(servicio);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validar() {
+        if (servicios.isEmpty()) {
+            return false;
+        } 
+        return true;
+    }
 }
