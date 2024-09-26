@@ -13,8 +13,12 @@ import facade.MailSenderFacade;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
+ * Esta clase nos solicita un servicio, un protocólo y una cuenta para la configuración, para después
+ * ingresar un destinatario, concepto y un correo, para enviar correos y así probar el MailSender que realizamos.
+ * 
  * @author Equipo4
  */
 public class FrmEnviarCorreo extends javax.swing.JFrame {
@@ -27,7 +31,8 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
     private DefaultComboBoxModel listaCuentas = new DefaultComboBoxModel();
 
     /**
-     * Creates new form FrmConfiguracion
+     * Constructor de FrmEnviarCorreo.
+     * Inicializa la interfaz gráfica y llama el método para consultar las configuraciones.
      */
     public FrmEnviarCorreo() {
         initComponents();
@@ -232,7 +237,13 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Método que se ejecuta cuando se presiona el botón Confirmar.
+     * Se crea una nueva configuración basada en los valores seleccionados en los comboBox
+     * y se habilitan los campos para enviar un correo.
+     *
+     * @param evt Evento de acción
+     */
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         configuracionCreada = new Configuracion();
         
@@ -250,7 +261,12 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         txtAreaCuerpo.setEnabled(true);
         btnEnviar.setEnabled(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
+    /**
+     * Método que se ejecuta cuando se presiona el botón Enviar.
+     * Envía el correo utilizando la configuración creada y muestra un mensaje de confirmación.
+     *
+     * @param evt Evento de acción
+     */
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String destinatario = txtfldDestinatario.getText();
         String concepto = txtfldConcepto.getText();
@@ -259,8 +275,14 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         Correo correoNuevo = new Correo(destinatario, concepto, cuerpo);
 
         mailSender.enviarCorreo(correoNuevo, configuracionCreada);
+        JOptionPane.showMessageDialog(null, "Se ha enviado el correo de manera exitosa.", "Aviso", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnEnviarActionPerformed
-
+    /**
+     * Método que se ejecuta cuando se selecciona un servicio en el comboBox.
+     * Llena los comboBox de protocolos y cuentas con relación al servicio seleccionado.
+     *
+     * @param evt Evento de acción
+     */
     private void cmbxServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxServicioActionPerformed
         llenarOtrosComboBox();
     }//GEN-LAST:event_cmbxServicioActionPerformed
@@ -303,6 +325,9 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Llena el comboBox de servicios con los servicios disponibles en la configuración.
+     */
     private void llenarComboBoxServicios() {
         List<Servicio> servicios = new LinkedList<>();
         servicios = configuracionDisponible.getServicios();
@@ -313,6 +338,9 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         llenarOtrosComboBox();
     }
 
+    /**
+     * Llena los comboBox de protocolos y cuentas con relación al servicio seleccionado.
+     */
     private void llenarOtrosComboBox() {
         Servicio servicio = (Servicio) cmbxServicio.getSelectedItem();
 
@@ -323,6 +351,12 @@ public class FrmEnviarCorreo extends javax.swing.JFrame {
         cmbxCuenta.setModel(listaCuentas);
     }
 
+    /**
+     * Genera un DefaultComboBoxModel a partir de una lista de servicios.
+     *
+     * @param listaServicios Lista de servicios
+     * @return Un DefaultComboBoxModel con los servicios
+     */
     public DefaultComboBoxModel<Servicio> serviciosComboBoxModel(List<Servicio> listaServicios) {
         DefaultComboBoxModel<Servicio> defaultComboBoxModel = new DefaultComboBoxModel<>();
         if (listaServicios != null) {
