@@ -8,7 +8,6 @@ import datos.Correo;
 import datos.Cuenta;
 import datos.Protocolo;
 import datos.Servicio;
-import org.itson.arquitectura.mailSender.enviarCorreo.IMecanismo;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +30,23 @@ public class JavaMailApi implements IMecanismo {
     private String destinatario;
     private String encabezado;
     private String mensaje;
-
     private Properties mProperties;
     private Session mSession;
     private MimeMessage mCorreo;
 
-    private void crearEmail(Correo correo, Configuracion configuracion) {
+    /**
+     * Constructor.
+     */
+    public JavaMailApi() {
+        mProperties = new Properties();
+    }
+
+    /**
+     * Permite crear un correo para poder enviarlo.
+     * 
+     * @param correo El correo a enviar.
+     */
+    private void crearCorreo(Correo correo) {
         destinatario = correo.getDestinatario();
         encabezado = correo.getEncabezado();
         mensaje = correo.getMensaje();
@@ -58,7 +68,6 @@ public class JavaMailApi implements IMecanismo {
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
             mCorreo.setSubject(encabezado);
             mCorreo.setText(mensaje, "ISO-8859-1", "html");
-
         } catch (AddressException ex) {
             Logger.getLogger(JavaMailApi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
@@ -66,19 +75,18 @@ public class JavaMailApi implements IMecanismo {
         }
     }
 
-    public JavaMailApi() {
-        mProperties = new Properties();
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void enviar(Correo correo, Configuracion configuracion) {
-        crearEmail(correo, configuracion);
+        crearCorreo(correo);
         Servicio servicio = configuracion.getServicios().getFirst();
         Protocolo protocolo = servicio.getProtocolos().getFirst();
         Cuenta cuenta = servicio.getCuentas().getFirst();
         System.out.printf("""
                           Correo enviado exitosamente.
-                          Mecanismo: Mailgun.API
+                          Mecanismo: Java.Mail.API
                           Servicio: %s
                           Protocolo: %s
                           Cuenta: %s
