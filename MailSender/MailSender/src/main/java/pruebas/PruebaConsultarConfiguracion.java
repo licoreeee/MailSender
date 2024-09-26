@@ -14,7 +14,7 @@ import org.itson.arquitectura.mailSender.consultarConfiguracion.IConsultarConfig
 
 /**
  *
- * @author Familia
+ * @author Equipo 4
  */
 public class PruebaConsultarConfiguracion {
 
