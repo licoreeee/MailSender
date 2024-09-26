@@ -4,6 +4,7 @@
  */
 package datos;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class Configuracion {
     private List<Servicio> servicios;
 
     public Configuracion() {
+        servicios = new LinkedList<>();
     }
     
     public boolean validar(){

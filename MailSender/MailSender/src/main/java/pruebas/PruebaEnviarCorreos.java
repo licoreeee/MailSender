@@ -1,14 +1,22 @@
 /*
- * PruebaEnviarCorreo.java
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package pruebas;
 
+import datos.Configuracion;
+import datos.Correo;
 import datos.Cuenta;
 import datos.Protocolo;
 import datos.Servicio;
+import org.itson.arquitectura.mailSender.enviarCorreo.IMecanismo;
+import implementaciones.JavaMailApi;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * @author Equipo4
+ *
+ * @author Abe
  */
 public class PruebaEnviarCorreos {
 
@@ -16,14 +24,27 @@ public class PruebaEnviarCorreos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        IMecanismo mecanismo = new JavaMailApi();
+        Configuracion configuracion = new Configuracion();
         
-        Protocolo pop3 = new Protocolo("Pop3");
-        Protocolo imap = new Protocolo("IMAP");
+        List<Servicio> servicios = new LinkedList<>();
+        servicios.add(new Servicio("POTROS"));
+        List<Protocolo> protocolos = new LinkedList<>();
+        protocolos.add(new Protocolo("POP3"));
+        List<Cuenta> cuentas = new LinkedList<>();
+        cuentas.add(new Cuenta("equipo4.arquitectura@gmail.com"));
         
-        Cuenta cuenta1 = new Cuenta("ricardo.gutierrez@gmail.com");
-        Cuenta cuenta2 = new Cuenta("abel.sanchez@gmail.com");
+        servicios.getFirst().setProtocolos(protocolos);
+        servicios.getFirst().setCuentas(cuentas);
+        configuracion.setServicios(servicios);
         
-        Servicio servicio = new Servicio("GMail");
+        
+
+        Correo correo = new Correo();
+        correo.setDestinatario("abel.sanchez245473@potros.itson.edu.mx");
+        correo.setEncabezado("Puro hola mundo");
+        correo.setMensaje("Hola mundo la mejor planilla alvvvvvvv!!!!!");
+        mecanismo.enviar(correo, configuracion);
     }
     
 }
