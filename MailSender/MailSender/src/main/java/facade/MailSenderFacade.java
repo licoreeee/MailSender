@@ -21,6 +21,7 @@ public class MailSenderFacade implements IMailSender {
      */
     public MailSenderFacade(){
         enviadorCorreo = new EnviadorCorreo();
+        consultadorConfiguracion = new ConsultadorConfiguracion();
     }
 
     /**
