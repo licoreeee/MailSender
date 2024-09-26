@@ -13,4 +13,8 @@ public interface IMailSender {
 
     public void enviarCorreo(Correo correo, Configuracion configuracion);
     
+    public Configuracion configurarComponente();
+    
+    public Configuracion consultarConfiguracion();
+    
 }

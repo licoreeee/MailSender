@@ -24,7 +24,6 @@ public class PruebaEnviarCorreos {
         Cuenta cuenta2 = new Cuenta("abel.sanchez@gmail.com");
         
         Servicio servicio = new Servicio("GMail");
-        
     }
     
 }

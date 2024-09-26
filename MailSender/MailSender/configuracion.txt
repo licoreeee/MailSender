@@ -2,8 +2,10 @@
 Gmail:
      protocolo:
     -IMAP
-    -POP3 
+    -POP3
+    -SMTP
      cuenta:
+    -borreGOD@gmail.com
     -abel@gmail.com
     -vicky@gmail.com
     -diego@gmail.com    
@@ -12,6 +14,18 @@ Hotmail:
     -IMAP
     -POP3 
      cuenta:
+    -borreGOD@outlook.com
     -abel@hotmail.com
     -vicky@hotmail.com
     -diego@hotmail.com 
+Outlook:
+    protocolo:
+    -MAPI
+    -IMAP
+    -POP3
+    -SMTP
+     cuenta:
+    -borreGOD@outlook.com
+    -abel@outlook.com
+    -vicky@outlook.com
+    -diego@outlook.com 

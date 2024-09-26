@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package org.itson.arquitectura.mailSender.configurarComponente;
+package pruebas;
 
 import datos.Configuracion;
 import datos.Cuenta;
@@ -10,12 +10,16 @@ import datos.Protocolo;
 import datos.Servicio;
 import java.util.List;
 import java.util.Map;
+import org.itson.arquitectura.mailSender.configurarComponente.ILector;
+import org.itson.arquitectura.mailSender.configurarComponente.ILectorConfiguracion;
+import org.itson.arquitectura.mailSender.configurarComponente.LectorArchivo;
+import org.itson.arquitectura.mailSender.configurarComponente.LectorConfiguracion;
 
 /**
  *
  * @author Abe
  */
-public class Prueba {
+public class PruebaConfigurarComponente {
 
     /**
      * @param args the command line arguments

@@ -7,7 +7,7 @@ package datos;
  * @author Equipo4
  */
 public class Correo {
-
+    
     private String encabezado;
     private String mensaje;
     private String destinatario;
