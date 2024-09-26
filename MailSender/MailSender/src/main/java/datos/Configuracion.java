@@ -16,6 +16,10 @@ public class Configuracion {
 
     public Configuracion() {
     }
+    
+    public boolean validar(){
+        return true;
+    }
 
     public List<Servicio> getServicios() {
         return servicios;

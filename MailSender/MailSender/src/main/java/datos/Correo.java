@@ -1,15 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Correo.java
  */
 package datos;
 
 /**
- *
- * @author Dell
+ * @author Equipo4
  */
 public class Correo {
-    
+
     private String encabezado;
     private String mensaje;
     private String destinatario;
@@ -40,5 +38,9 @@ public class Correo {
     public void setDestinatario(String destinatario) {
         this.destinatario = destinatario;
     }
- 
+
+    public boolean validar() {
+        return true;
+    }
+
 }

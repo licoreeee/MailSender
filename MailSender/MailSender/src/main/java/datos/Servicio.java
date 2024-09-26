@@ -1,21 +1,21 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Servicio.java
  */
 package datos;
 
 import java.util.List;
 
 /**
- *
- * @author Dell
+ * @author Equipo4
  */
 public class Servicio {
-    
+
+    private String nombre;
     private List<Protocolo> protocolos;
     private List<Cuenta> cuentas;
 
-    public Servicio() {
+    public Servicio(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<Protocolo> getProtocolos() {
@@ -32,6 +32,19 @@ public class Servicio {
 
     public void setCuentas(List<Cuenta> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    public void agregarProtocolo(Protocolo protocolo) {
+        protocolos.add(protocolo);
+    }
+
+    public boolean agregarCuenta(Cuenta cuenta) {
+        if (cuenta.getDireccion().toLowerCase().contains(nombre.toLowerCase())) {
+            cuentas.add(cuenta);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

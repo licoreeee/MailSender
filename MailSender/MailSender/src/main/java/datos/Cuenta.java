@@ -1,18 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Cuenta.java
  */
 package datos;
 
 /**
- *
- * @author Dell
+ * @author Equipo4
  */
 public class Cuenta {
     
     private String direccion;
 
-    public Cuenta() {
+    public Cuenta(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getDireccion() {
