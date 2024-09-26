@@ -3,7 +3,9 @@
  */
 package datos;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Equipo4
@@ -16,6 +18,8 @@ public class Servicio {
 
     public Servicio(String nombre) {
         this.nombre = nombre;
+        protocolos = new LinkedList<>();
+        cuentas = new LinkedList<>();
     }
 
     public List<Protocolo> getProtocolos() {
@@ -34,19 +38,6 @@ public class Servicio {
         this.cuentas = cuentas;
     }
 
-    public void agregarProtocolo(Protocolo protocolo) {
-        protocolos.add(protocolo);
-    }
-
-    public boolean agregarCuenta(Cuenta cuenta) {
-        if (cuenta.getDireccion().toLowerCase().contains(nombre.toLowerCase())) {
-            cuentas.add(cuenta);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -54,7 +45,47 @@ public class Servicio {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
+    public boolean agregarProtocolo(Protocolo protocolo) {
+        if (!protocolos.contains(protocolo)) {
+            protocolos.add(protocolo);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean agregarCuenta(Cuenta cuenta) {
+        if (!cuentas.contains(cuenta)) {
+            if (cuenta.getDireccion().toLowerCase().contains(nombre.toLowerCase())) {
+                cuentas.add(cuenta);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.nombre);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Servicio other = (Servicio) obj;
+        return Objects.equals(this.nombre, other.nombre);
+    }
 
 }

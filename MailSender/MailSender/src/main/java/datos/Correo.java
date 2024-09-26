@@ -7,7 +7,7 @@ package datos;
  * @author Equipo4
  */
 public class Correo {
-    
+
     private String encabezado;
     private String mensaje;
     private String destinatario;
@@ -40,6 +40,15 @@ public class Correo {
     }
 
     public boolean validar() {
+        if (encabezado.isBlank()) {
+            return false;
+        } else if (mensaje.isBlank()) {
+            return false;
+        } else if (destinatario.isBlank()) {
+            return false;
+        } else if (!destinatario.matches("^\\w+([.-]?\\w+)@\\w+([.-]?\\w+)(.\\w{2,4})+$")) {
+            return false;
+        }
         return true;
     }
 

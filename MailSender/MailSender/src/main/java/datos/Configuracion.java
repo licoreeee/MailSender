@@ -37,7 +37,7 @@ public class Configuracion {
     public boolean validar() {
         if (servicios.isEmpty()) {
             return false;
-        } 
+        }
         return true;
     }
 }
